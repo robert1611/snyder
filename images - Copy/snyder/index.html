@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Availability Calendar</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="calendar.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <script src="script.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/FAPS-MGQH-EDTT-MCBD-2949.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style></style>
+
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+            <!-- HAMBURGER BUTTON-->
+
+            <div class="hamburger-menu">
+                <img src="/images/icons/bars-solid.svg" alt="Menu">
+            </div>
+
+            <div class="mobile-nav">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#locations">Locations</a>
+            </div>
+
+            <div class="logo">
+                <img src="/images/logo.png" alt="Logo">
+            </div>
+    
+            <!-- Middle Section -->
+            <div class="middle-section">
+                <a href="tel:+1234567890" class="phone-number">(123) 456-7890</a>
+                <button id="contactBtn" class="contact-button">Contact Us</button>
+            </div>
+    
+            <!-- Navigation -->
+            <nav class="main-nav">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#locations">Locations</a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Contact Form Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name*</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name*</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="companyName">Company Name</label>
+                    <input type="text" id="companyName">
+                </div>
+                <div class="form-group">
+                    <label for="property">Property*</label>
+                    <select id="property" required>
+                        <option value="">Select a property</option>
+                        <option value="propertyA">Property A</option>
+                        <option value="propertyB">Property B</option>
+                        <option value="propertyC">Property C</option>
+                        <option value="propertyD">Property D</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number*</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="section-test-container">
+        <p class="test-paragraph">
+            If you're a <strong>windmill, solar, or pipeline worker</strong>, or anyone working in the area for an extended time, finding the right place to stay can be a challenge. Hotels are expensive and lack the comfort of home, while unfurnished rentals require too much setup. Our <strong>fully furnished rental homes</strong> offer the <strong>perfect solution</strong> for long-term stays.
+        </p>
+ 
+        <p class="test-paragraph">
+            Our housing is <strong>conveniently located</strong> near major projects in <strong>Roscoe, Fluvanna, Borden County, Hermleigh, and Colorado City</strong>, making your commute quick and easy. Whether you're managing a wind farm, installing solar panels, or working on pipeline infrastructure, you'll have a <strong>comfortable and hassle-free</strong> place to stay while being close to the job site.
+        </p>
+ 
+        <p class="test-paragraph">
+            Unlike cramped hotels, our homes provide <strong>spacious living areas</strong> where crews can unwind after long shifts. The <strong>ample parking</strong> accommodates trucks and work vehicles with ease. Plus, with <strong>fully stocked kitchens</strong>, you can save money by cooking meals instead of eating out.
+        </p>
+ 
+        <p class="test-paragraph">
+            Each of our properties has been <strong>recently remodeled</strong> with workers in mind. Enjoy the convenience of <strong>oversized washers and dryers</strong>, ideal for handling work clothes and gear. <strong>Hard surface flooring</strong> makes cleaning a breeze, and our <strong>high-speed WiFi</strong> ensures you stay connected—whether for work or relaxation.
+        </p>
+ 
+        <p class="test-paragraph">
+            If you need a <strong>reliable, comfortable stay in Snyder, TX</strong>, contact us today. We specialize in housing for <strong>windmill, solar, and pipeline workers</strong>, ensuring you have the best accommodations possible.
+        </p>
+ 
+        <div class="test-cta">
+            ✅ <strong>Book Now</strong> and experience the difference!
+        </div>
+    </div>
+       
+    <div class="main-container">     
+        <div class="content-wrapper">         
+            <div class="left-column">             
+                <div class="listing-header">Three Bedroom in Ira</div>                  
+                <div class="main-photo">                 
+                    <img src="/images/39th/front.jpg" alt="Main property photo" id="mainPhoto">                 
+                    <button class="carousel-btn prev" onclick="prevImage()">&#10094;</button>                 
+                    <button class="carousel-btn next" onclick="nextImage()">&#10095;</button>             
+                </div>                  
+                
+                <div class="grid-container">                 
+                    <div class="extra-box">                     
+                        <div class="amenities">                         
+                            <div class="amenity">
+                                <img src="/images/icons/bed-solid.svg" alt="Blender" class="custom-icon">
+                                <span>3 Bedrooms</span>
+                            </div> 
+                                             
+                            <div class="amenity">                             
+                                <i class="fas fa-bath"></i>                             
+                                <span>2 Bathrooms</span>                         
+                            </div>                         
+                            <div class="amenity">                             
+                                <i class="fas fa-users"></i>                             
+                                <span>Sleeps 6</span>                         
+                            </div>               
+                            <div class="amenity">                             
+                                <i class="fas fa-wifi"></i>                             
+                                <span>300 MB</span>                         
+                            </div>                         
+                                     
+                            <div class="amenity">                             
+                                <i class="fas fa-snowflake"></i> 
+                                <span>Central Air</span>                 
+                            </div>                         
+                            <div class="amenity">                             
+                                <i class="fas fa-temperature-high"></i>
+                                <span>Central Heat</span>                          
+                            </div>                         
+                            <div class="amenity">
+                                <img src="/images/icons/washing-machine-solid.svg" alt="Washing Machine" class="custom-icon">
+                                <span>Washer</span>
+                            </div>
+                            
+                            <div class="amenity">
+                                <img src="/images/icons/dryer-solid.svg" alt="Dryer" class="custom-icon">
+                                <span>Dryer</span>
+                            </div>
+                            <div class="amenity">
+                                <img src="/images/icons/tv-solid.svg" alt="Dryer" class="custom-icon">
+                                <span>4 Smart TVs</span>
+                            </div>
+                     
+                            <div class="amenity">
+                                <img src="/images/icons/coffee-pot-solid.svg" alt="Coffee Pot" class="custom-icon">
+                                <span>Coffee Machine</span>
+                            </div>
+                            <div class="amenity">
+                                <img src="/images/icons/blender-solid.svg" alt="Blender" class="custom-icon">
+                                <span>Blender</span>
+                            </div>
+                            <div class="amenity">
+                                <img src="/images/icons/kitchen-set-solid.svg" alt="Blender" class="custom-icon">
+                                <span>Dishes</span>
+                            </div>                
+                            <div class="amenity">
+                                <img src="/images/icons/microwave-solid.svg" alt="Blender" class="custom-icon">
+                                <span>Microwave</span>
+                            </div>  
+                            <div class="amenity">
+                                <img src="/images/icons/utensils-solid.svg" alt="Blender" class="custom-icon">
+                                <span>utensils</span>
+                            </div>  
+                            <div class="amenity">
+                                <img src="/images/icons/oven-solid.svg" alt="Blender" class="custom-icon">
+                                <span>Oven</span>
+                            </div> 
+                            <div class="amenity">
+                                <img src="/images/icons/refrigerator-sharp-duotone-solid.svg" alt="Blender" class="custom-icon">
+                                <span>Fridge</span>
+                            </div> 
+                            <div class="amenity">
+                                <img src="/images/icons/grill-solid.svg" alt="Blender" class="custom-icon">
+                                <span>Weber Grill</span>
+                            </div>
+                            <div class="amenity">
+                                <img src="/images/icons/square-parking-duotone-regular.svg" alt="Blender" class="custom-icon">
+                                <span>Off Street Parking</span>
+                            </div> 
+                            <div class="amenity">
+                                <img src="/images/icons/bed-solid.svg" alt="Blender" class="custom-icon">
+                                <span>King</span>
+                            </div> 
+                            <div class="amenity">
+                                <img src="/images/icons/bed-solid.svg" alt="Blender" class="custom-icon">
+                                <span>Queen</span>
+                            </div> 
+                            <div class="amenity">
+                                <img src="/images/icons/bed-solid.svg" alt="Blender" class="custom-icon">
+                                <span>2 Twins</span>
+                            </div>
+                        </div>                 
+                    </div>                 
+                    <div class="calendar-container">                     
+                        <div class="calendar"></div>                 
+                    </div>             
+                </div>              
+                
+                <div class="listing-header">Two Bedroom Lake House</div>             
+                <div class="main-photo">                 
+                    <img src="/images/smallira/kitchen1.jpg" alt="Main property photo" id="mainPhoto2">                 
+                    <button class="carousel-btn prev" onclick="prevImage()">&#10094;</button>                 
+                    <button class="carousel-btn next" onclick="nextImage()">&#10095;</button>             
+                </div>
+    
+                <div class="grid-container">
+                    <div class="extra-box">
+                        <p>Put your text here</p>
+                    </div>
+                    <div class="calendar-container">
+                        <div class="calendar"></div>
+                    </div>
+                </div>
+            
+                <div class="listing-header">Two Bedroom Lake House</div>
+                <div class="main-photo">
+                    <img src="/images/smallira/kitchen1.jpg" alt="Main property photo" id="mainPhoto3">
+                    <button class="carousel-btn prev" onclick="prevImage()">&#10094;</button>
+                    <button class="carousel-btn next" onclick="nextImage()">&#10095;</button>
+                </div>
+            
+                <div class="grid-container">
+                    <div class="extra-box">
+                        <p>Put your text here</p>
+                    </div>
+                    <div class="calendar-container">
+                        <div class="calendar"></div>
+                    </div>
+                </div>
+ 
+                <div class="listing-header">Two Bedroom Lake House</div>
+                <div class="main-photo">
+                    <img src="/images/smallira/kitchen1.jpg" alt="Main property photo" id="mainPhoto4">
+                    <button class="carousel-btn prev" onclick="prevImage()">&#10094;</button>
+                    <button class="carousel-btn next" onclick="nextImage()">&#10095;</button>
+                </div>
+                
+                <div class="grid-container">
+                    <div class="extra-box">
+                        <p>Put your text here</p>
+                    </div>
+                    <div class="calendar-container">
+                        <div class="calendar"></div>
+                    </div>
+                </div>
+            </div> <!-- Close left-column -->
+ 
+            <div class="scroll-container">
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13357.456832231472!2d-100.9176!3d32.7179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1624943345678!5m2!1sen!2sus"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div> <!-- Close content-wrapper -->
+    </div> <!-- Close main-container -->
+
+ <footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p>Phone: (123) 456-7890</p>
+            <p>Email: info@example.com</p>
+            <p>Address: Snyder, TX</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </div>
+</footer>
+
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('contactModal');
+    const contactBtn = document.getElementById('contactBtn');
+    const closeBtn = document.querySelector('.close-button');
+    const contactForm = document.getElementById('contactForm');
+
+    // Open modal
+    contactBtn.addEventListener('click', function() {
+        modal.style.display = 'block';
+    });
+
+    // Close modal
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Handle form submission
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const formData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            companyName: document.getElementById('companyName').value,
+            property: document.getElementById('property').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value
+        };
+
+        // Here you would typically send the data to your server
+        console.log('Form submitted:', formData);
+        
+        // Clear form and close modal
+        contactForm.reset();
+        modal.style.display = 'none';
+    });
+});
+
+ </script>
+</body>
+
