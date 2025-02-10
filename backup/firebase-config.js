@@ -1,7 +1,8 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js';
-import { getDatabase } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js';
+// Import the functions you need from the SDKs
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 
-// Your Firebase configuration stays exactly the same
+// Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCM8V-mfyo23d7YUROs55pe5qcfVhPjeAQ",
   authDomain: "snyder-9b75a.firebaseapp.com",

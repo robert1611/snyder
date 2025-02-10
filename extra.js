@@ -174,3 +174,51 @@ function prevImage4() {
     currentIndex4 = (currentIndex4 - 1 + property4Photos.length) % property4Photos.length;
     document.getElementById('mainPhoto4').src = property4Photos[currentIndex4];
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('contactModal');
+    const contactBtn = document.getElementById('contactBtn');
+    const closeBtn = document.querySelector('.close-button');
+    const contactForm = document.getElementById('contactForm');
+
+    // Open modal
+    contactBtn.addEventListener('click', function() {
+        modal.style.display = 'block';
+    });
+
+    // Close modal
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    
+    // Handle form submission
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const formData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            companyName: document.getElementById('companyName').value,
+            property: document.getElementById('property').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value
+        };
+
+        // Here you would typically send the data to your server
+        console.log('Form submitted:', formData);
+        
+        // Clear form and close modal
+        contactForm.reset();
+        modal.style.display = 'none';
+    });
+
+});

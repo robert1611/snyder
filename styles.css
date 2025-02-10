@@ -78,18 +78,23 @@ body {
     }
 
     .phone-number {
-        font-size: 11px !important;
+        font-size: 18px !important;
         white-space: nowrap;         /* Prevent wrapping */
         margin: 0;                   /* Remove any margins */
     }
 
     .contact-button {
-        font-size: 11px !important;  /* Force smaller size */
+        font-size: 14px !important;  /* Force smaller size */
         padding: 4px 8px !important; /* Much smaller padding */
         margin: 0;                   /* Remove any margins */
         white-space: nowrap;         /* Prevent wrapping */
-        min-width: 0;        
+        min-width: 0;   
+         
 }
+    .logo img {
+        height: 22px !important; /* Adjust to desired smaller size */
+}
+   
 }
 
 /* Header */
@@ -115,9 +120,15 @@ body {
     align-items: center;
 }
 
+
+
 .logo img {
-    height: 40px;
+   
+        height: 50px; /* Increase height slightly */        
+        width: auto; /* Keeps aspect ratio */
+        max-width: 100%; /* Ensures it doesn't overflow */
 }
+
 
 .middle-section {
     display: flex;
@@ -127,13 +138,14 @@ body {
 
 .phone-number {
     text-decoration: none;
-    color: black;
-    font-size: 16px;
+    color: #4a5db9;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 .contact-button {
     padding: 10px 20px;
-    background-color: black;
+    background-color: #4a5db9;
     color: white;
     border: none;
     border-radius: 4px;
@@ -163,17 +175,36 @@ body {
 /* About Section*/
 
 .section-test-container {
-    margin: 10%;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+.section-test-container h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
 
 .test-paragraph {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;  /* Reduced space between paragraphs */
+    color: #444;
+}
+
+.test-paragraph strong {
+    color: #000;
+}
+
+/* Add more space after the last paragraph before next section */
+.section-test-container > :last-child {
     margin-bottom: 20px;
 }
 
-.test-cta {
-    text-align: center;
-    margin-top: 30px;
+/* Add more space before first heading */
+.section-test-container h3:first-child {
+    margin-top: 20px;
 }
 
 /* Modal Styles */
@@ -192,9 +223,10 @@ body {
     position: relative;
     background-color: white;
     margin: 100px auto;
-    padding: 30px;
-    width: 90%;
+    padding-bottom: 60px;
+    width: 90%vh;
     max-width: 500px;
+    overflow-y: auto;
     border-radius: 8px;
 }
 
@@ -240,6 +272,7 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 .submit-button:hover {
@@ -255,7 +288,7 @@ body {
     margin-right: 200px;
     font-size: 20px;
     margin-bottom: -100px;
-    border: 2px solid red;  /* Add this temporarily */
+   
 }
 
 .paragraph {
@@ -292,7 +325,7 @@ body {
 
 .main-container {
     max-width: 1280px;
-    margin: 120px auto 0;  /* This is the only line that changes */
+    margin: 40px auto 0;  /* This is the only line that changes */
     padding: 0 24px;
 }
  
@@ -306,13 +339,57 @@ body {
     height: 80px;
     line-height: 80px;
     font-size: 24px;
-    padding: 0;
-    margin:0 24px;
-    background-color: white;
+    font-weight: 700;
+    padding: 0 16px;
+    margin: 0 24px;
+    background-color: rgba(74, 93, 185, 0.8); /* Transparent color */
+    color: white;
     border: 1px solid #ddd;
     max-width: 735px;
     width: 735px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keeps text on the left, icon on the right */
+    flex-wrap: nowrap; /* Default: prevent wrapping */
+    white-space: nowrap; /* Prevent wrap until screen is <=768px */
  }
+
+ .listing-header a {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    margin-left: 40px; /* Moves the icon a bit to the left */
+    display: flex;
+    align-items: center; /* Ensures vertical centering */
+}
+
+.listing-header a:hover {
+    color: #ddd; /* Lighter color on hover */
+}
+
+/* Reduce font and icon size for screens <= 768px */
+@media (max-width: 768px) {
+    .listing-header {
+        font-size: 18px; /* Smaller font */
+        height: auto; /* Allow height to adjust */
+        line-height: 1.4; /* Adjust line spacing */
+        padding: 10px 16px; /* Adjust padding */
+        white-space: normal; /* Allow text wrapping */
+        word-spacing: -1px; /* Reduce space between words */
+        flex-wrap: wrap; /* Enable wrapping */
+        flex-direction: column; /* Stack text and icon */
+        align-items: center; /* Center everything horizontally */
+        text-align: center; /* Ensure text stays centered */
+    }
+
+    .icon-link {
+        font-size: 18px; /* Adjust icon size */
+        margin-top: 10px; /* Add space between text and icon */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
 
  /* Main photo remains full-width */
 .main-photo {
@@ -325,8 +402,9 @@ body {
 
 .main-photo img {
     width: 100%;
-    height: auto;
-    display: block;;
+    height: 400px; /* Or whatever height you want */
+    object-fit: contain; /* This is the key line - it prevents stretching */
+    background: #f5f5f5; /* Optional: adds a light gray background */
 }
 
 .grid-container {
@@ -486,7 +564,20 @@ body {
         flex: 1;              /* Take remaining space */
     }
 
+    .section-test-container {
+        padding: 15px;  /* Slightly less padding on mobile */
+    }
 
+    .section-test-container h3 {
+        font-size: 20px;  /* Smaller heading size */
+        margin-bottom: 10px;
+    }
+
+    .test-paragraph {
+        font-size: 14px;  /* Smaller paragraph text */
+        line-height: 1.4;
+        margin-bottom: 15px;
+    }
 
 
 }
@@ -543,7 +634,7 @@ body {
     margin: 0 !important;
     min-height: 30px !important;
     padding: 4px !important;
-    background-color: #ff5a5f;
+    background-color: #4a5db9;
     color: white;
 }
 
@@ -591,6 +682,7 @@ body {
     margin: 0 !important;
     width: 90% !important;  /* Makes events not touch edges */
 }
+
 /* Emd of Calendar CSS */
 
  .carousel-btn {
@@ -766,5 +858,26 @@ body {
 }
 
 
+@media screen and (max-width: 480px) {
+    .middle-section {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px; /* Reduce space between elements */
+        justify-content: center; /* Center align */
+    }
 
+    .phone-number {
+        font-size: 10px !important;
+        margin: 0;
+        white-space: nowrap;
+    }
 
+    .contact-button {
+        font-size: 10px !important;
+        padding: 3px 6px !important;
+        margin: 0;
+        white-space: nowrap;
+        min-width: 0;
+    }
+}
