@@ -18,7 +18,7 @@ const calendars = {
         vrbo: "https://www.vrbo.com/icalendar/ZZZZZ.ics?nonTentative"
     },
     property3: {
-         airbnb: "https://api.allorigins.win/get?url=" + encodeURIComponent("https://www.airbnb.com/calendar/ical/1150251409414720594.ics?s=8f63c3c0b854580b4bd0031ba91cfa91"),
+        airbnb: "https://api.allorigins.win/get?url=" + encodeURIComponent("https://www.airbnb.com/calendar/ical/1150251409414720594.ics?s=8f63c3c0b854580b4bd0031ba91cfa91"),
         vrbo: "https://www.vrbo.com/icalendar/ZZZZZ.ics?nonTentative"
     },
     property4: {
@@ -139,9 +139,9 @@ app.get("/", (req, res) => {
     `);
 });
 
-// Start the server - Updated for GCP
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+// ✅ **Fix: Bind to Railway’s Port**
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`✅ Proxy server running on port ${PORT}`);
 }).on("error", (err) => {
     console.error("❌ SERVER ERROR:", err);
