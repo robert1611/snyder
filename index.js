@@ -1,5 +1,5 @@
-const {onRequest} = require('firebase-functions/v2/https');
-const {onDatabaseCreated} = require('firebase-functions/v2/database');
+const { onRequest } = require('firebase-functions/v2/https');
+const { onDatabaseCreated } = require('firebase-functions/v2/database');
 const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
 
@@ -9,7 +9,9 @@ const { onDocumentCreated } = require("firebase-functions/v2/firestore");
 
 exports.emailBooking = onDocumentCreated('/contact-submissions/{id}', (event) => {
     const booking = event.data.val();
-    
+
+    console.log('Booking received:', booking);
+
     const mailTransport = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -18,7 +20,7 @@ exports.emailBooking = onDocumentCreated('/contact-submissions/{id}', (event) =>
         }
     });
 
-    return mailTransport.sendMail({
+    const mailOptions = {
         from: 'snyderhousing@gmail.com',
         to: 'snyderhousing@gmail.com',
         subject: `New Booking - ${booking.property}`,
@@ -30,5 +32,9 @@ Check-out: ${booking.checkOut}
 Phone: ${booking.phone}
 Email: ${booking.email}
 Company: ${booking.companyName}`
-    });
+    };
+
+    return mailTransport.sendMail(mailOptions)
+        .then(() => console.log('Email sent successfully'))
+        .catch((error) => console.error('Error sending email:', error));
 });

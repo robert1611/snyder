@@ -4,6 +4,8 @@ import fetch from "node-fetch";
 import ical from "ical";
 import { Buffer } from "buffer";
 
+console.log("Starting proxy server...");
+
 const app = express();
 app.use(cors());
 
