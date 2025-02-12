@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 right: "prev,next"
             },
             events: function (fetchInfo, successCallback, failureCallback) {
-                fetch("http://127.0.0.1:3000/fetch-calendar/all")
+                fetch("https://papaya-genie-0b2c1e.netlify.app/.netlify/functions/fetchCalendar")
+
                     .then(response => response.json())
                     .then(data => {
                         const propertyData = data[propertyMap[propertyId]];

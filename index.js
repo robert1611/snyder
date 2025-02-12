@@ -5,7 +5,9 @@ const nodemailer = require('nodemailer');
 
 admin.initializeApp();
 
-exports.emailBooking = onDatabaseCreated('/contact-submissions/{id}', (event) => {
+const { onDocumentCreated } = require("firebase-functions/v2/firestore");
+
+exports.emailBooking = onDocumentCreated('/contact-submissions/{id}', (event) => {
     const booking = event.data.val();
     
     const mailTransport = nodemailer.createTransport({

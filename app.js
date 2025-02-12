@@ -2,53 +2,54 @@ import { app, database } from './firebase-config.js';
 import { ref, set } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js';
 
 document.addEventListener('DOMContentLoaded', function() {
-    // First, verify Firebase connection
     console.log('Checking Firebase connection...');
     console.log('Database object:', database);
     console.log('App object:', app);
 
-    // Contact form functionality
+    // Modal Elements
     const modal = document.getElementById('contactModal');
     const contactBtn = document.getElementById('contactBtn');
     const closeBtn = document.querySelector('.close-button');
     const contactForm = document.getElementById('contactForm');
 
     if (!contactBtn) {
-        console.error('Contact button not found');
+        console.error('❌ Contact button not found');
         return;
     }
 
-    // Open modal
+    // ✅ Open modal
     contactBtn.addEventListener('click', function() {
-        console.log('Contact button clicked');
+        console.log('✅ Contact button clicked');
         modal.style.display = 'block';
     });
 
-    // Close modal
+    // ✅ Close modal when clicking close button
     closeBtn.addEventListener('click', function() {
+        console.log('✅ Close button clicked');
         modal.style.display = 'none';
     });
 
-    // Close modal when clicking outside
+    // ✅ Close modal when clicking outside
     window.addEventListener('click', function(event) {
         if (event.target === modal) {
+            console.log('✅ Clicked outside modal, closing it');
             modal.style.display = 'none';
         }
     });
 
-    // Handle form submission
+    // ✅ Handle Form Submission
     contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();  // ✅ Prevent page reload
+
         console.log('Form submission started');
 
         try {
-            // Verify Firebase is available at submission time
             if (!database || !app) {
                 console.error('Firebase not properly initialized');
-                console.log('Database:', database);
-                console.log('App:', app);
                 throw new Error('Firebase not initialized');
             }
 
+            // ✅ Collect form data
             const formData = {
                 firstName: document.getElementById('firstName').value,
                 lastName: document.getElementById('lastName').value,
@@ -63,23 +64,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
             console.log('About to save form data:', formData);
 
-            // Create database reference and save
+            // ✅ Save to Firebase
             const submissionId = Date.now().toString();
             const dbRef = ref(database, 'contact-submissions/' + submissionId);
-            
-            console.log('Database reference:', dbRef); // Add this line   
-            console.log('Attempting Firebase save...');
             await set(dbRef, formData);
-            console.log('Firebase save successful!');
+            console.log('✅ Firebase save successful!');
 
-            // Close modal and reset form
-            modal.style.display = 'none';
+            // ✅ Send data to FormSubmit (hidden action)
+            const formAction = contactForm.getAttribute('action');
+            fetch(formAction, {
+                method: 'POST',
+                body: new FormData(contactForm)
+            })
+            .then(response => {
+                console.log('✅ Email sent via FormSubmit');
+            })
+            .catch(error => console.error('❌ FormSubmit error:', error));
+
+            // ✅ Reset form fields
             contactForm.reset();
 
+            // ✅ Close the modal
+            modal.style.display = 'none';
+
         } catch (error) {
-            console.error('Detailed error:', error);
-            console.error('Error stack:', error.stack);
-            alert('Error saving to database. Please check console for details.');
+            console.error('❌ Error during form submission:', error);
         }
     });
 });
+
+
