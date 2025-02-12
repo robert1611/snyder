@@ -3,11 +3,19 @@ import cors from "cors";
 import fetch from "node-fetch";
 import ical from "ical";
 import { Buffer } from "buffer";
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 console.log("Starting proxy server...");
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 app.use(cors());
+
+// Add static file serving - this will serve your HTML and other static files
+app.use(express.static(__dirname));
 
 // Define iCal URLs for 4 properties
 const calendars = {
@@ -127,19 +135,9 @@ app.get("/fetch-calendar/all", async (req, res) => {
 
 // Simple Route to Confirm Server is Running
 app.get("/", (req, res) => {
-    res.send(`
-        <html>
-            <head><title>Server Running</title></head>
-            <body>
-                <h1>✅ Proxy Server is Running</h1>
-                <p>Try the following API routes:</p>
-                <ul>
-                    <li><a href="/fetch-calendar/all">Fetch All Calendar Data</a></li>
-                </ul>
-            </body>
-        </html>
-    `);
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
+
 
 // ✅ **Fix: Bind to Railway’s Port**
 const PORT = process.env.PORT || 8080;
