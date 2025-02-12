@@ -1,3 +1,4 @@
+// Function to check if Google Maps API is loaded
 function checkGoogleMapsLoaded() {
     if (!window.google || !window.google.maps) {
         console.error('Google Maps API not loaded. Check your API key and console for errors.');
@@ -7,14 +8,33 @@ function checkGoogleMapsLoaded() {
     return true;
 }
 
+// Handle authentication failure
 window.gm_authFailure = function() {
     console.error('Google Maps authentication failed. Check your API key.');
     alert('Google Maps failed to load. Please check your API key.');
 };
 
+// Function to dynamically load Google Maps API script
+function loadGoogleMaps() {
+    const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY;
+    if (!googleMapsApiKey) {
+        console.error("Google Maps API Key is missing! Make sure it's set in environment variables.");
+        return;
+    }
+
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&libraries=places,geometry&callback=initMap`;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+}
+
+loadGoogleMaps();
+
+// Main function to initialize the map
 function initMap() {
     if (!checkGoogleMapsLoaded()) return;
-    
+
     console.log('Initializing map...');
     
     const mapContainer = document.querySelector('.map-container');
@@ -140,4 +160,4 @@ function initMap() {
         map.setCenter(snyder);
         map.setZoom(10);
     });
-}
+}  
