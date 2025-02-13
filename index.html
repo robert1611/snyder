@@ -617,7 +617,11 @@
     window.GOOGLE_MAPS_API_KEY = '{{GOOGLE_MAPS_API_KEY}}';
 </script>
 <script src="map.js"></script>
-<script id="google-maps-script"></script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANoxSIEErogGM0Vty2yeYUbOiQkS1q84M&libraries=places,geometry&callback=initMap">
+</script>
+
 <script type="module" src="firebase-config.js"></script>
 <script type="module" src="app.js"></script>
 </body>
