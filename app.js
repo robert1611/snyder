@@ -3,11 +3,13 @@ import { ref, set } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-dat
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Checking Firebase connection...');
-    console.log('Database object:', database);
-    console.log('App object:', app);
-
-    // Modal Elements
+    
+    // Force initial modal state
     const modal = document.getElementById('contactModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+
     const contactBtn = document.getElementById('contactBtn');
     const closeBtn = document.querySelector('.close-button');
     const contactForm = document.getElementById('contactForm');
@@ -17,19 +19,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // ✅ Open modal
+    // Open modal
     contactBtn.addEventListener('click', function() {
         console.log('✅ Contact button clicked');
         modal.style.display = 'block';
     });
 
-    // ✅ Close modal when clicking close button
+    // Close modal when clicking close button
     closeBtn.addEventListener('click', function() {
         console.log('✅ Close button clicked');
         modal.style.display = 'none';
     });
 
-    // ✅ Close modal when clicking outside
+    // Close modal when clicking outside
     window.addEventListener('click', function(event) {
         if (event.target === modal) {
             console.log('✅ Clicked outside modal, closing it');
@@ -37,60 +39,63 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ✅ Handle Form Submission
+    // Handle Form Submission
     contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();  // ✅ Prevent page reload
-
+        e.preventDefault();
         console.log('Form submission started');
 
         try {
             if (!database || !app) {
-                console.error('Firebase not properly initialized');
                 throw new Error('Firebase not initialized');
             }
 
-            // ✅ Collect form data
+            // Collect form data
             const formData = {
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                companyName: document.getElementById('companyName').value,
-                property: document.getElementById('property').value,
+                firstName: document.getElementById('firstName').value.trim(),
+                lastName: document.getElementById('lastName').value.trim(),
+                companyName: document.getElementById('companyName').value.trim(),
+                property: document.getElementById('property').value.trim(),
                 checkIn: document.getElementById('checkIn').value,
                 checkOut: document.getElementById('checkOut').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
                 timestamp: new Date().toISOString()
             };
 
+            // Validate required fields
+            for (const [key, value] of Object.entries(formData)) {
+                if (!value && key !== 'companyName') {
+                    throw new Error(`${key} is required`);
+                }
+            }
+
             console.log('About to save form data:', formData);
 
-            // ✅ Save to Firebase
+            // Save to Firebase
             const submissionId = Date.now().toString();
             const dbRef = ref(database, 'contact-submissions/' + submissionId);
             await set(dbRef, formData);
             console.log('✅ Firebase save successful!');
 
-            // ✅ Send data to FormSubmit (hidden action)
+            // Handle FormSubmit if configured
             const formAction = contactForm.getAttribute('action');
-            fetch(formAction, {
-                method: 'POST',
-                body: new FormData(contactForm)
-            })
-            .then(response => {
+            if (formAction) {
+                await fetch(formAction, {
+                    method: 'POST',
+                    body: new FormData(contactForm)
+                });
                 console.log('✅ Email sent via FormSubmit');
-            })
-            .catch(error => console.error('❌ FormSubmit error:', error));
+            }
 
-            // ✅ Reset form fields
+            // Success cleanup
             contactForm.reset();
-
-            // ✅ Close the modal
             modal.style.display = 'none';
+            alert('Thank you for your submission!');
 
         } catch (error) {
             console.error('❌ Error during form submission:', error);
+            alert('There was an error submitting the form. Please try again.');
         }
     });
 });
-
 

@@ -16,9 +16,9 @@ window.gm_authFailure = function() {
 
 // Function to dynamically load Google Maps API script
 function loadGoogleMaps() {
-    const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY;
+    const googleMapsApiKey = window.GOOGLE_MAPS_API_KEY || '';
     if (!googleMapsApiKey) {
-        console.error("Google Maps API Key is missing! Make sure it's set in environment variables.");
+        console.error("Google Maps API Key is missing!");
         return;
     }
 
