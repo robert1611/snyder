@@ -71,21 +71,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
             console.log('About to save form data:', formData);
 
-            // Save to Firebase
+            // Get references and data ready
             const submissionId = Date.now().toString();
             const dbRef = ref(database, 'contact-submissions/' + submissionId);
-            await set(dbRef, formData);
-            console.log('✅ Firebase save successful!');
-
-            // Handle FormSubmit if configured
             const formAction = contactForm.getAttribute('action');
-            if (formAction) {
-                await fetch(formAction, {
+            const formSubmitData = new FormData(contactForm);
+
+            // Run Firebase save and FormSubmit in parallel
+            await Promise.all([
+                set(dbRef, formData),
+                formAction ? fetch(formAction, {
                     method: 'POST',
-                    body: new FormData(contactForm)
-                });
-                console.log('✅ Email sent via FormSubmit');
-            }
+                    body: formSubmitData
+                }) : Promise.resolve()
+            ]);
+
+            console.log('✅ Firebase save successful!');
+            console.log('✅ Email sent via FormSubmit');
 
             // Success cleanup
             contactForm.reset();

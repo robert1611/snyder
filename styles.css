@@ -348,22 +348,25 @@ body {
     height: 80px;
     line-height: 80px;
     font-size: 24px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 24px;
     font-weight: 700;
     padding: 0 16px;
     margin: 0 24px;
-    background-color: rgba(74, 93, 185, 0.8); /* Transparent color */
+    background-color: rgba(74, 93, 185, 0.8);
     color: white;
     border: 1px solid #ddd;
-    max-width: 735px;
-    width: 735px;
+    width: calc(100% - 48px); /* This changes from fixed width to responsive */
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Keeps text on the left, icon on the right */
-    flex-wrap: nowrap; /* Default: prevent wrapping */
-    white-space: nowrap; /* Prevent wrap until screen is <=768px */
- }
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    box-sizing: border-box; /* Add this to include padding in width calculation */
+}
 
- .listing-header a {
+.listing-header a {
     color: white;
     font-size: 24px;
     text-decoration: none;
