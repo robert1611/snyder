@@ -1,6 +1,7 @@
 services:
   - type: web
     name: snyder-1
+    env: node
     runtime: node
     buildCommand: |
       npm install
