@@ -14,25 +14,8 @@ window.gm_authFailure = function() {
     alert('Google Maps failed to load. Please check your API key.');
 };
 
-// Function to dynamically load Google Maps API script
-function loadGoogleMaps() {
-    const googleMapsApiKey = window.GOOGLE_MAPS_API_KEY || '';
-    if (!googleMapsApiKey) {
-        console.error("Google Maps API Key is missing!");
-        return;
-    }
-
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&libraries=places,geometry&callback=initMap`;
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-}
-
-loadGoogleMaps();
-
-// Main function to initialize the map
-function initMap() {
+// Make initMap function globally available
+window.initMap = function() {
     if (!checkGoogleMapsLoaded()) return;
 
     console.log('Initializing map...');
@@ -160,4 +143,4 @@ function initMap() {
         map.setCenter(snyder);
         map.setZoom(10);
     });
-}  
+};
