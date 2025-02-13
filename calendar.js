@@ -24,9 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 right: "prev,next"
             },
             events: function (fetchInfo, successCallback, failureCallback) {
-                fetch("https://papaya-genie-0b2c1e.netlify.app/.netlify/functions/fetchCalendar")
-
-                    .then(response => response.json())
+                // Update this URL to your Render endpoint
+                fetch("https://snyder-1.onrender.com/fetch-calendar/all")
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
                     .then(data => {
                         const propertyData = data[propertyMap[propertyId]];
                         
@@ -37,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         const events = [];
 
-                        // Process Airbnb bookings - same format for all properties
+                        // Process Airbnb bookings
                         if (propertyData.airbnb && Array.isArray(propertyData.airbnb)) {
                             propertyData.airbnb.forEach(booking => {
                                 events.push({

@@ -12,7 +12,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(cors());
+
+// Updated CORS configuration
+app.use(cors({
+    origin: 'https://snyder-1.onrender.com',
+    methods: ['GET', 'POST', 'OPTIONS'],
+    credentials: true
+}));
 
 // Add static file serving - this will serve your HTML and other static files
 app.use(express.static(__dirname));
@@ -138,8 +144,7 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-
-// ✅ **Fix: Bind to Railway’s Port**
+// ✅ **Fix: Bind to Railway's Port**
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`✅ Proxy server running on port ${PORT}`);
