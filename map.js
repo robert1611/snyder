@@ -14,7 +14,7 @@ window.gm_authFailure = function() {
     alert('Google Maps failed to load. Please check your API key.');
 };
 
-// Make initMap available globally FIRST
+// Make initMap function globally available
 window.initMap = function() {
     if (!checkGoogleMapsLoaded()) return;
 
