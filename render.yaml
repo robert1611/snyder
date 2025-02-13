@@ -1,7 +1,9 @@
 services:
   - type: web
     name: snyder-1
+    runtime: node
     buildCommand: |
+      npm install
       sed -i "s/{{FIREBASE_API_KEY}}/$FIREBASE_API_KEY/g" index.html
       sed -i "s/{{GOOGLE_MAPS_API_KEY}}/$GOOGLE_MAPS_API_KEY/g" index.html
     startCommand: node proxy.js
