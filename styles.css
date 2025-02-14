@@ -84,7 +84,7 @@ body {
          
 }
     .logo img {
-        height: 22px !important; /* Adjust to desired smaller size */
+        height: 35px !important; /* Adjust to desired smaller size */
 }
    
 .content-wrapper {
@@ -391,6 +391,7 @@ body {
     .listing-header {
         font-size: 18px; /* Smaller font */
         height: auto; /* Allow height to adjust */
+        width: 90%;
         line-height: 1.4; /* Adjust line spacing */
         padding: 10px 16px; /* Adjust padding */
         white-space: normal; /* Allow text wrapping */
@@ -399,6 +400,7 @@ body {
         flex-direction: column; /* Stack text and icon */
         align-items: center; /* Center everything horizontally */
         text-align: center; /* Ensure text stays centered */
+        margin: 10px, auto;
     }
 
     .icon-link {
@@ -495,10 +497,10 @@ body {
 
 @media screen and (max-width: 768px) {
     .grid-container {
-        width: 90%;              /* Match other container widths */
-        margin: 0 auto;          /* Center the container */
+        width: 90%;
+        margin: 10px auto;  /* Top and bottom margin reduced to 10px */
         display: flex;
-        flex-direction: column;  /* Stack children vertically */
+        flex-direction: column;
         align-items: center;
     }
 
@@ -531,7 +533,7 @@ body {
 
     .main-photo {
         width: 90%;          /* Full width photo */
-        margin: 0 20px;  /* Space below photo */
+        margin:10px auto;  /* Space below photo */
     }
 
     .amenities {
@@ -571,6 +573,11 @@ body {
         margin-right: auto;
         box-sizing: border-box;  /* Include padding in width */
         margin-bottom: 20px;  /* Reduced space below photo */
+    }
+
+    /* Add space only before new property sections */
+    .left-column > .listing-header:not(:first-child) {
+        margin-top: 20px;  /* Space between properties */
     }
 
     .amenities {
@@ -904,13 +911,13 @@ body {
     }
 
     .phone-number {
-        font-size: 10px !important;
+        font-size: 20px !important;
         margin: 0;
         white-space: nowrap;
     }
 
     .contact-button {
-        font-size: 10px !important;
+        font-size: 20px !important;
         padding: 3px 6px !important;
         margin: 0;
         white-space: nowrap;
