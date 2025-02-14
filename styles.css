@@ -535,13 +535,26 @@ body {
     }
 
     .listing-header {
-        width: 90%;             /* Match other container widths */
-        margin: 0 auto;         /* Center */
-        font-size: 20px;        /* Slightly smaller font */
-        padding: 0 10px;        /* Add some padding */
+        width: 90%;
+        margin: 0 auto;
+        font-size: 16px;
+        padding: 10px;
+        height: auto;
+        line-height: normal;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
     }
 
-    .listing-header,
+    .listing-header a {
+        margin-left: 0;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+
     .main-photo {
         width: 90%;             /* Same width */
         margin-left: auto;
