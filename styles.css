@@ -1,18 +1,13 @@
 body {
 
     margin-top: 120px;
-
 }
-
-
-
 
 /* Hamburger */
 
 .hamburger-menu {
     display: none;  /* Hidden by default */
     cursor: pointer;
-    
 }
 
 .hamburger-menu img {
@@ -66,15 +61,12 @@ body {
     }
 
     .middle-section {
-        position: absolute;
-        left: 50%;          /* Center in container */
-        transform: translateX(-50%);  /* True center */
-        top: 50%;         /* Adjust as needed */
-        transform: translate(-50%, -50%);
+        margin-left: auto;  /* Push to right */
+        position: static;   /* Remove absolute positioning */
+        transform: none;    /* Remove transforms */
         display: flex;
-        flex-direction: row;
         align-items: center;
-        gap: 15px;
+        gap: 10px;
     }
 
     .phone-number {
@@ -95,6 +87,20 @@ body {
         height: 22px !important; /* Adjust to desired smaller size */
 }
    
+.content-wrapper {
+    gap: 20px;    /* Add space between map and content */
+}
+
+.scroll-container {
+    margin-bottom: 20px;  /* Space after map */
+}
+
+/* Adjust main container spacing */
+.main-container {
+    margin-top: 20px;    /* Space at top of main container */
+}
+
+
 }
 
 /* Header */
@@ -131,6 +137,7 @@ body {
 
 
 .middle-section {
+    margin-left: auto;  /* This pushes it to the right */
     display: flex;
     align-items: center;
     gap: 20px;
@@ -547,6 +554,9 @@ body {
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
+        margin-top: 20px;     /* Space above header */
+        margin-bottom: 10px;  /* Reduced space below header */
+
     }
 
     .listing-header a {
@@ -560,6 +570,7 @@ body {
         margin-left: auto;
         margin-right: auto;
         box-sizing: border-box;  /* Include padding in width */
+        margin-bottom: 20px;  /* Reduced space below photo */
     }
 
     .amenities {
