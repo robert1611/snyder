@@ -911,13 +911,13 @@ body {
     }
 
     .phone-number {
-        font-size: 20px !important;
+        font-size: 14px !important;
         margin: 0;
         white-space: nowrap;
     }
 
     .contact-button {
-        font-size: 20px !important;
+        font-size: 14px !important;
         padding: 3px 6px !important;
         margin: 0;
         white-space: nowrap;
